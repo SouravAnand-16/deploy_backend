@@ -18,13 +18,14 @@ app.get("/",(req,res)=>{
 app.use("/user",UserRouter);
 app.use("/note",NoteRouter);
 
-app.listen(PORT,async(req,res)=>{
+app.listen(PORT,async()=>{
     try{
         await connection ;
         console.log('Server is connected to DB');
         console.log(`Server is running at http://localhost:${PORT}`);
     }catch(error){
-        res.status(500).send({"msg":error.message});
+        // res.status(500).send({"msg":error.message});
+        console.log(error.message);
     }
   
 });
