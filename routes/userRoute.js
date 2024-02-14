@@ -8,7 +8,7 @@ const UserRouter = express.Router();
 
 UserRouter.post("/register",registerValidator,async(req,res)=>{
     try{
-        res.status(201).send({"msg":"User registration completed...."});
+        res.status(200).send({"msg":"User registration completed...."});
     }catch(error){
         res.status(500).send({"msg":error.message});
     }
