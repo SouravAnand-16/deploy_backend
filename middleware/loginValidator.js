@@ -11,13 +11,16 @@ const loginValidator = async(req,res,next)=>{
         if(!user){
             return res.status(400).send({"msg":`User doesn't exist with ${email}. please do signup....`});
         }
-        const result = bcrypt.compare(password,user.password);
-        if(!result){
+        const result = await bcrypt.compare(password,user.password);
+        console.log(`password is : ${password} and the userDB pass is : ${user.password} and result is ${result}`);
+        if(result){
+            const accessToken = jwt.sign({"userId":user._id,"username":user.username,"email":user.email},secretKey,{expiresIn:"10m"});
+            req.accessToken = accessToken ;
+            next() ;
+        }else{
             return res.status(400).send({"msg":"Wrong email or password..."});
         }
-         const accessToken = jwt.sign({"userId":user._id,"username":user.username,"email":user.email},secretKey,{expiresIn:"10m"});
-         req.accessToken = accessToken ;
-         next() ;
+        
     }catch(error){
         res.status(500).send({"msg":error.message});
     }
