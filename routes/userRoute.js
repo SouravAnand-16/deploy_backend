@@ -1,10 +1,13 @@
 const express = require("express");
+const cors = require("cors");
 const UserModel = require("../model/userModel");
 const registerValidator = require("../middleware/registerValidator");
 const loginValidator = require("../middleware/loginValidator");
 const TokenModel = require("../model/blacklistModel");
 
 const UserRouter = express.Router();
+
+UserRouter.use(cors());
 
 UserRouter.post("/register",registerValidator,async(req,res)=>{
     try{
