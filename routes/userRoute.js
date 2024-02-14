@@ -11,6 +11,7 @@ UserRouter.post("/register",registerValidator,async(req,res)=>{
     try{
         res.status(200).send({"msg":"User registration completed...."});
     }catch(error){
+        console.log(error);
         res.status(500).send({"msg":error.message});
     }
 });
