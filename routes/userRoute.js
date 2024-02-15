@@ -18,7 +18,7 @@ UserRouter.post("/register",registerValidator,async(req,res)=>{
 
 UserRouter.post("/login",loginValidator,async(req,res)=>{
     try{
-         res.status(200).send({"msg":"Login Successful..","accessToken":req.accessToken});
+         res.status(200).send({"msg":"Login Successful..","accessToken":req.accessToken,"username":req.username});
     }catch(error){
         res.status(500).send({"msg":error.message});
     }

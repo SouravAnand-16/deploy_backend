@@ -16,6 +16,7 @@ const loginValidator = async(req,res,next)=>{
         if(result){
             const accessToken = jwt.sign({"userId":user._id,"username":user.username,"email":user.email},secretKey,{expiresIn:"10m"});
             req.accessToken = accessToken ;
+            req.username = user.username ;
             next() ;
         }else{
             return res.status(400).send({"msg":"Wrong email or password..."});
