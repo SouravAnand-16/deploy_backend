@@ -36,7 +36,7 @@ NoteRouter.get("/",auth,async(req,res)=>{
          if(!note){
             return res.status(400).send({"msg":"Note not found"});
          }
-         res.status(200).send({"here is your notes..":note});
+         res.status(200).send({"msg":"Here is the notes"},{"notes":note});
     }catch(error){
         res.status(500).send({"msg":error.message});
     }
