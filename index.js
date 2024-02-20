@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json(),cors());
 
 app.get("/",(req,res)=>{
-    res.status(200).send({"msg":"Welcome to home page"});
+    res.status(200).send({"msg":"Welcome to home page"});    
 })
 
 app.use("/user",UserRouter);
